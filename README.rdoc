@@ -1,0 +1,13 @@
+= Heater API
+
+== Getting an API object
+
+  require 'heater'
+
+== Meta
+
+Written by Chris Chandler(http://chrischandler.name) of Flatterline(http://flatterline.com)
+
+Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
+
+Main page: http://github.com/flatterline/heater_gem

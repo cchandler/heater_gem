@@ -1,0 +1,7 @@
+config/database.yml
+log/*
+*.log
+*.bundle
+*.o
+public/system
+.DS_Store
