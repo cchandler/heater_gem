@@ -5,3 +5,4 @@ log/*
 *.o
 public/system
 .DS_Store
+pkg/
