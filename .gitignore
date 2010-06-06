@@ -6,3 +6,4 @@ log/*
 public/system
 .DS_Store
 pkg/
+test.rb

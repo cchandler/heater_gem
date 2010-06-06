@@ -3,6 +3,50 @@
 == Getting an API object
 
   require 'heater'
+  api = Heater::API.instance
+  api.api_key = "mykey"
+
+Somewhere in your code you have to call the instance method before interacting with point sets and points, otherwise your API key won't be loaded and you'll get 403s back.
+
+== Getting an API key
+
+  require 'heater'
+
+  api = Heater::API.instance
+  api.get_api_key("http://myurl.com")
+  # You're shiny new key is in api.api_key and ready for use
+
+== Interacting with point sets
+
+Points belong in point sets, so before you can add data you'll need to create a point set.
+
+  ps = Heater::PointSet.create("shinynewset")
+
+We've tried following some convention idioms for interacting with point sets. The next time you want to access it you can just use:
+
+  ps = Heater::PointSet.find("shinynewset")
+
+If you try and access a point set you don't own you'll get a 403.
+
+== Interacting with points
+
+Once you're ready to add points to your point set you get a reference to a point set and call add_point
+
+  ps.add_point(37.455, -111.909)
+
+We don't interpolate or round these values, so when you want to remove it you'll need to use the same precision as the original request (ie -111.9090 != -111.909).
+
+  ps.remove_point(37.455, -111.909)
+
+== Viewing data
+
+The API includes a lookup function to get an example URL to see what your heatmap looks like.  It's accessible on the point set object.
+
+  ps.example_url # => http://localhost:3000/point_sets/shinynewset/examples.html?api_key=04e9a79f6e1ecafaa5a8c6886dd71e0263724dc6c6494e53d018c35656b0f3e8
+
+This URL includes a read-only key component so you can safely distribute it without giving out write access.
+
+The example page also contains example JS for including the overlay data in your own maps.
 
 == Meta
 
